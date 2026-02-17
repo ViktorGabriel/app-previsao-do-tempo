@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.caixa-busca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+}
+
+.caixa-busca input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    width: 100%;
+    margin: 0 10px;
+}
+
+.caixa-busca input::placeholder {
+    color: #ccc;
+}
+
+.caixa-busca button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.caixa-busca button:hover {
+    transform: scale(1.1);
+}
+
+.caixa-clima {
+    transition: opacity 0.4s ease;
+}
+
+#cidade {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.caixa-temperatura {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+#temperatura {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.caixa-temperatura span {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.descricao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#icone-clima {
+    width: 80px;
+}
+
+.detalhes {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.coluna {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coluna i {
+    font-size: 1.5rem;
+}
+
+.info p {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.info span {
+    font-size: 0.8rem;
+    color: #ccc;
+}

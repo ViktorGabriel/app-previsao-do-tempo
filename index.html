@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Clima</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <main class="container">
+        <div class="caixa-busca">
+            <i class="fa-solid fa-location-dot"></i>
+            <input type="text" id="input-cidade" placeholder="Digite uma cidade...">
+            <button id="botao-busca">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="caixa-clima">
+
+            <h2 id="cidade">--</h2>
+
+            <div class="caixa-temperatura">
+                <p id="temperatura">0</p>
+                <span>°C</span>
+            </div>
+
+            <div class="descricao">
+                <img id="icone-clima" src="" alt="Ícone do tempo">
+                <span id="condicao">--</span>
+            </div>
+
+            <div class="detalhes">
+                <div class="coluna">
+                    <i class="fa-solid fa-water"></i>
+                    <div class="info">
+                        <p id="umidade">0%</p>
+                        <span>Umidade</span>
+                    </div>
+                </div>
+                <div class="coluna">
+                    <i class="fa-solid fa-wind"></i>
+                    <div class="info">
+                        <p id="velocidade-vento">0 km/h</p>
+                        <span>Vento</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
