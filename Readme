@@ -1,0 +1,77 @@
+# ☁️ App de Previsão do Tempo (Weather App)
+
+> Uma aplicação web moderna para consulta de clima em tempo real, consumindo a API da OpenWeatherMap.
+
+![Badge Concluído](http://img.shields.io/static/v1?label=STATUS&message=CONCLUÍDO&color=BLUE&style=for-the-badge)
+![Badge License](http://img.shields.io/static/v1?label=LICENSE&message=MIT&color=GREEN&style=for-the-badge)
+
+## 🖼️ Preview do Projeto
+
+![Preview do App](images/preview.png)
+
+---
+
+## 💻 Sobre o Projeto
+
+Este projeto é uma aplicação Front-End que permite ao usuário buscar as condições climáticas atuais de qualquer cidade do mundo. O foco principal foi o estudo de **integração de APIs REST** e o uso de **JavaScript Assíncrono**.
+
+A interface foi desenhada utilizando o conceito de **Glassmorphism** (efeito de vidro fosco), criando uma UI moderna, limpa e agradável, totalmente responsiva.
+
+---
+
+## ⚙️ Funcionalidades
+
+- **Busca em Tempo Real:** Digite o nome da cidade e receba os dados instantaneamente.
+- **Dados Detalhados:** Exibe temperatura atual, descrição do clima (céu limpo, chuva, etc.), umidade e velocidade do vento.
+- **Ícones Dinâmicos:** O ícone do tempo muda automaticamente de acordo com a resposta da API.
+- **Estado Inicial:** O app carrega automaticamente com uma cidade padrão pré-definida.
+- **Tratamento de Erros:** (Opcional: Feedback visual caso a cidade não exista).
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+O projeto foi desenvolvido com tecnologias nativas (Vanilla JS) para solidificar os fundamentos da web:
+
+- **HTML5:** Estrutura semântica e acessível.
+- **CSS3:** - Flexbox para layout.
+  - **Glassmorphism UI** (`backdrop-filter`, `rgba`).
+  - Responsividade para dispositivos móveis.
+- **JavaScript (ES6+):**
+  - **Fetch API:** Para realizar as requisições HTTP.
+  - **Async/Await:** Para gerenciar o fluxo assíncrono de dados.
+  - **DOM Manipulation:** Para atualizar a interface com os dados do JSON.
+- **OpenWeatherMap API:** Fonte dos dados climáticos.
+
+---
+
+## 🧠 Aprendizados
+
+Durante o desenvolvimento, os principais desafios e aprendizados foram:
+
+1.  **Consumo de API:** Entender como funcionam os *endpoints*, chaves de API (API Key) e parâmetros de URL.
+2.  **Assincronismo:** Uso prático de `async` e `await` para esperar a resposta do servidor antes de tentar renderizar a tela.
+3.  **Manipulação de JSON:** Como extrair dados específicos de um objeto complexo retornado pela API.
+4.  **Estilização Avançada:** Aplicação de efeitos de desfoque e transparência com CSS puro.
+
+---
+
+## 🚀 Como Executar o Projeto
+
+1. Clone este repositório:
+
+2. Configuração da API Key:
+
+Este projeto necessita de uma chave de acesso da OpenWeatherMap.
+
+Crie uma conta gratuita no site deles.
+
+No arquivo script.js, substitua a variável key pela sua chave:
+
+"const apiKey = "SUA_CHAVE_AQUI";""
+
+3. Abra o arquivo index.html no seu navegador.
+
+👨‍💻 Autor
+
+Viktor Gabriel Gonçalves de Oliveira
