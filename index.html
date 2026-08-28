@@ -4,55 +4,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App de Clima</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Previsão do Tempo | Clima em Tempo Real</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+    <!-- Fundo decorativo animado -->
+    <div class="fundo-gradiente" id="fundo-gradiente"></div>
 
     <main class="container">
-        <div class="caixa-busca">
-            <i class="fa-solid fa-location-dot"></i>
-            <input type="text" id="input-cidade" placeholder="Digite uma cidade...">
-            <button id="botao-busca">
-                <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- Topo da Aplicação com Controles Rápidos -->
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-cloud-sun-rain logo-icon"></i>
+                <h1>ClimaTempo</h1>
+            </div>
+            <div class="header-acoes">
+                <button id="btn-unidade" class="btn-icone" title="Alternar Unidade (°C / °F)">
+                    <span id="unidade-texto">°C</span>
+                </button>
+                <button id="btn-geolocalizacao" class="btn-icone" title="Usar minha localização atual">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </button>
+                <button id="btn-config-api" class="btn-icone" title="Configurações de Chave de API">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Barra de Busca -->
+        <section class="secao-busca">
+            <div class="caixa-busca" id="caixa-busca">
+                <i class="fa-solid fa-magnifying-glass busca-icon"></i>
+                <input type="text" id="input-cidade" placeholder="Buscar cidade (ex: São Paulo, Londres, Tóquio)..." autocomplete="off" spellcheck="false">
+                <button id="btn-limpar-busca" class="btn-limpar escondido" title="Limpar campo">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button id="botao-busca" class="btn-buscar" title="Buscar previsão">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Histórico de Buscas Recentes -->
+        <section class="historico-container escondido" id="historico-container">
+            <div class="historico-tags" id="historico-tags">
+                <!-- Tags dinâmicas inseridas via JS -->
+            </div>
+        </section>
+
+        <!-- Indicador de Carregamento (Loading Spinner) -->
+        <div class="loading-container escondido" id="loading-spinner">
+            <div class="spinner"></div>
+            <p>Consultando dados meteorológicos...</p>
+        </div>
+
+        <!-- Mensagem de Erro / Alerta -->
+        <div class="alerta-erro escondido" id="alerta-erro">
+            <i class="fa-solid fa-triangle-exclamation alerta-icon"></i>
+            <div class="alerta-conteudo">
+                <strong id="erro-titulo">Cidade não encontrada</strong>
+                <p id="erro-mensagem">Verifique o nome digitado e tente novamente.</p>
+            </div>
+            <button id="btn-fechar-alerta" class="btn-fechar-alerta" title="Fechar">
+                <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
 
-        <div class="caixa-clima">
-
-            <h2 id="cidade">--</h2>
-
-            <div class="caixa-temperatura">
-                <p id="temperatura">0</p>
-                <span>°C</span>
+        <!-- Conteúdo Principal do Clima -->
+        <section class="caixa-clima" id="caixa-clima">
+            <!-- Cabeçalho do Clima -->
+            <div class="clima-cabecalho">
+                <div class="cidade-wrapper">
+                    <i class="fa-solid fa-location-dot icone-local"></i>
+                    <h2 id="cidade">--</h2>
+                </div>
+                <p class="data-hora" id="data-hora">--</p>
             </div>
 
-            <div class="descricao">
-                <img id="icone-clima" src="" alt="Ícone do tempo">
-                <span id="condicao">--</span>
-            </div>
-
-            <div class="detalhes">
-                <div class="coluna">
-                    <i class="fa-solid fa-water"></i>
-                    <div class="info">
-                        <p id="umidade">0%</p>
-                        <span>Umidade</span>
+            <!-- Bloco de Temperatura Principal e Ícone -->
+            <div class="clima-principal">
+                <div class="caixa-temperatura">
+                    <p id="temperatura">--</p>
+                    <span id="unidade-simbolo">°C</span>
+                </div>
+                
+                <div class="descricao">
+                    <img id="icone-clima" src="" alt="Ícone do tempo" class="icone-animado">
+                    <span id="condicao">Carregando previsão...</span>
+                    <div class="min-max">
+                        <span><i class="fa-solid fa-arrow-down"></i> Mín: <b id="temp-min">--°</b></span>
+                        <span><i class="fa-solid fa-arrow-up"></i> Máx: <b id="temp-max">--°</b></span>
                     </div>
                 </div>
-                <div class="coluna">
+            </div>
+
+            <!-- Grid de Detalhes Adicionais -->
+            <div class="detalhes-grid">
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-temperature-half"></i>
+                    <div class="info">
+                        <span class="rotulo">Sensação</span>
+                        <p id="sensacao-termica">--°</p>
+                    </div>
+                </div>
+
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-droplet"></i>
+                    <div class="info">
+                        <span class="rotulo">Umidade</span>
+                        <p id="umidade">--%</p>
+                    </div>
+                </div>
+
+                <div class="detalhe-item">
                     <i class="fa-solid fa-wind"></i>
                     <div class="info">
-                        <p id="velocidade-vento">0 km/h</p>
-                        <span>Vento</span>
+                        <span class="rotulo">Vento</span>
+                        <p id="velocidade-vento">-- km/h</p>
+                    </div>
+                </div>
+
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <div class="info">
+                        <span class="rotulo">Pressão</span>
+                        <p id="pressao">-- hPa</p>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Seção de Previsão Estendida (Forecast) -->
+            <div class="previsao-estendida-secao">
+                <h3 class="secao-titulo"><i class="fa-regular fa-clock"></i> Previsão para os Próximos Dias</h3>
+                <div class="previsao-cards" id="previsao-cards">
+                    <!-- Cards de previsão inseridos dinamicamente via JS -->
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Modal de Configuração de Chave de API -->
+    <div class="modal-overlay escondido" id="modal-api-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-key"></i> Configuração da API</h3>
+                <button id="btn-fechar-modal" class="btn-fechar-modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-corpo">
+                <p>Insira sua chave gratuita da <strong>OpenWeatherMap</strong> para consultas em tempo real ilimitadas:</p>
+                <div class="input-grupo">
+                    <input type="text" id="input-api-key" placeholder="Cole sua OpenWeather API Key aqui...">
+                </div>
+                <div class="modal-dica">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Caso não possua chave, a aplicação usará o modo de demonstração inteligente para teste com cidades populares.</span>
+                </div>
+            </div>
+            <div class="modal-rodape">
+                <button id="btn-usar-mock" class="btn-secundario">Usar Modo Demo</button>
+                <button id="btn-salvar-api-key" class="btn-primario">Salvar Chave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts da Aplicação -->
     <script src="assets/js/script.js"></script>
 </body>
 

@@ -1,6 +1,6 @@
 # ☁️ App de Previsão do Tempo (Weather App)
 
-> Uma aplicação web moderna para consulta de clima em tempo real, consumindo a API da OpenWeatherMap.
+> Uma aplicação web moderna e resiliente para consulta meteorológica em tempo real, construída com JavaScript ES6+ e Glassmorphism UI.
 
 ![Badge Concluído](http://img.shields.io/static/v1?label=STATUS&message=CONCLUÍDO&color=BLUE&style=for-the-badge)
 ![Badge License](http://img.shields.io/static/v1?label=LICENSE&message=MIT&color=GREEN&style=for-the-badge)
@@ -13,65 +13,62 @@
 
 ## 💻 Sobre o Projeto
 
-Este projeto é uma aplicação Front-End que permite ao usuário buscar as condições climáticas atuais de qualquer cidade do mundo. O foco principal foi o estudo de **integração de APIs REST** e o uso de **JavaScript Assíncrono**.
+Este projeto é uma aplicação **Front-End de alta performance** que permite aos usuários consultar a previsão do tempo de qualquer cidade do mundo em tempo real. A interface foi redesenhada seguindo os princípios de **Glassmorphism**, com micro-animações, fundos adaptativos de acordo com o clima e suporte a dispositivos móveis.
 
-A interface foi desenhada utilizando o conceito de **Glassmorphism** (efeito de vidro fosco), criando uma UI moderna, limpa e agradável, totalmente responsiva.
+A aplicação conta com um sistema resiliente de **fallback inteligente (Modo Demo/Mock)**, garantindo que o app nunca quebre mesmo que a chave de API ainda não tenha sido informada ou haja instabilidade de rede.
 
 ---
 
-## ⚙️ Funcionalidades
+## ✨ Funcionalidades Principais
 
-- **Busca em Tempo Real:** Digite o nome da cidade e receba os dados instantaneamente.
-- **Dados Detalhados:** Exibe temperatura atual, descrição do clima (céu limpo, chuva, etc.), umidade e velocidade do vento.
-- **Ícones Dinâmicos:** O ícone do tempo muda automaticamente de acordo com a resposta da API.
-- **Estado Inicial:** O app carrega automaticamente com uma cidade padrão pré-definida.
-- **Tratamento de Erros:** (Opcional: Feedback visual caso a cidade não exista).
+- 🔍 **Busca em Tempo Real:** Consulta rápida por qualquer cidade do mundo via API da OpenWeatherMap.
+- 📍 **Geolocalização Automática:** Botão dedicado para obter o clima da sua localização atual em 1 clique (`navigator.geolocation`).
+- 🌡️ **Alternador de Unidades (°C / °F):** Alternância dinâmica e instantânea entre Celsius e Fahrenheit salva em `localStorage`.
+- 🕒 **Previsão Estendida:** Carrossel com previsão do tempo para as próximas horas / dias.
+- 📜 **Histórico de Buscas:** Acesso rápido às últimas cidades pesquisadas com tags clicáveis.
+- 🎨 **Temas Dinâmicos por Clima:** O fundo gradiente e a iluminação da interface reagem ao clima atual (Céu limpo, Chuva, Nublado, Tempestade, Neve ou Noite).
+- ⚙️ **Gerenciador de API Key na UI:** Modal para inserir e salvar sua chave da OpenWeatherMap no navegador sem necessidade de alterar o código-fonte.
+- 🛡️ **Resiliência e Tratamento de Erros:** Alertas visuais amigáveis para cidade não encontrada (404), chave inválida (401), sem internet ou tempo limite excedido.
+- ⏳ **Loading State:** Animações de carregamento (spinner) elegantes durante requisições assíncronas.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-O projeto foi desenvolvido com tecnologias nativas (Vanilla JS) para solidificar os fundamentos da web:
-
-- **HTML5:** Estrutura semântica e acessível.
-- **CSS3:** - Flexbox para layout.
-  - **Glassmorphism UI** (`backdrop-filter`, `rgba`).
-  - Responsividade para dispositivos móveis.
+- **HTML5:** Estrutura semântica, acessível e otimizada.
+- **CSS3:**
+  - **Glassmorphism UI** avançado (`backdrop-filter`, `rgba`, bordas luminosas).
+  - Gradientes dinâmicos adaptativos com micro-animações.
+  - Design 100% responsivo (Mobile First).
+  - Tipografia Google Fonts (`Poppins`).
 - **JavaScript (ES6+):**
-  - **Fetch API:** Para realizar as requisições HTTP.
-  - **Async/Await:** Para gerenciar o fluxo assíncrono de dados.
-  - **DOM Manipulation:** Para atualizar a interface com os dados do JSON.
-- **OpenWeatherMap API:** Fonte dos dados climáticos.
-
----
-
-## 🧠 Aprendizados
-
-Durante o desenvolvimento, os principais desafios e aprendizados foram:
-
-1.  **Consumo de API:** Entender como funcionam os *endpoints*, chaves de API (API Key) e parâmetros de URL.
-2.  **Assincronismo:** Uso prático de `async` e `await` para esperar a resposta do servidor antes de tentar renderizar a tela.
-3.  **Manipulação de JSON:** Como extrair dados específicos de um objeto complexo retornado pela API.
-4.  **Estilização Avançada:** Aplicação de efeitos de desfoque e transparência com CSS puro.
+  - **Fetch API & AbortController:** Requisições assíncronas com controle de timeout.
+  - **LocalStorage API:** Persistência de preferências de unidade, histórico e credenciais.
+  - **Mock Data Engine:** Motor de demonstração local offline.
+- **OpenWeatherMap API:** Dados climáticos em tempo real e previsão de 5 dias.
 
 ---
 
 ## 🚀 Como Executar o Projeto
 
-1. Clone este repositório:
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/ViktorGabriel/app-previsao-do-tempo.git
+   ```
 
-2. Configuração da API Key:
+2. **Abra a aplicação:**
+   - Basta abrir o arquivo `index.html` em qualquer navegador web moderno.
+   - Ou utilize uma extensão como o *Live Server* no VSCode.
 
-Este projeto necessita de uma chave de acesso da OpenWeatherMap.
+3. **Configuração da API Key (Opcional):**
+   - O aplicativo já inicia funcionando em **Modo Demonstração Inteligente**.
+   - Para dados 100% em tempo real da OpenWeatherMap:
+     1. Obtenha uma chave gratuita em [OpenWeatherMap](https://openweathermap.org/).
+     2. No app, clique no ícone de **Engrenagem ⚙️** no topo superior direito.
+     3. Cole sua chave e clique em **Salvar Chave**.
 
-Crie uma conta gratuita no site deles.
+---
 
-No arquivo script.js, substitua a variável key pela sua chave:
+## 👨‍💻 Autor
 
-"const apiKey = "SUA_CHAVE_AQUI";""
-
-3. Abra o arquivo index.html no seu navegador.
-
-👨‍💻 Autor
-
-Viktor Gabriel Gonçalves de Oliveira
+**Viktor Gabriel Gonçalves de Oliveira**
